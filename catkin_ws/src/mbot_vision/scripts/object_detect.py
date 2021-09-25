@@ -1,4 +1,16 @@
 #!/usr/bin/env python
+# coding=utf-8
+'''
+Author       : Jingsheng Lyu
+Date         : 2021-05-29 14:50:43
+LastEditors  : Jingsheng Lyu
+LastEditTime : 2021-09-25 17:49:17
+FilePath     : /undefined/home/jingsheng/catkin_ws/src/mbot_vision/scripts/object_detect.py
+Github       : https://github.com/jingshenglyu
+Web          : https://jingshenglyu.github.io/
+E-Mail       : jingshenglyu@gmail.com
+'''
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import rospy
@@ -18,18 +30,16 @@ RED_HIGH   = 230
 
 class image_converter:
     def __init__(self):    
-        # 创建cv_bridge，声明图像的发布者和订阅者
-        ######################################请补充此处代码（开始）######################################################
+        # Create cv_bridge, declaring publishers and subscribers of images
 	self.image_pub=rospy.Publisher("object_detect_image",Image,queue_size=1)
 	self.target_pub=rospy.Publisher("object_detect_pose",Pose,queue_size=1)
 	self.bridge=CvBridge()
 	self.image_sub=rospy.Subscriber("/camera/image_raw",Image,self.callback)
 	
 
-        ######################################请补充此处代码（结束）######################################################
 
     def callback(self,data):
-        # 使用cv_bridge将ROS的图像数据转换成OpenCV的图像格式
+        # Convert ROS image data to OpenCV image format using cv_bridge
         try:
             cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
         except CvBridgeError as e:
@@ -76,11 +86,11 @@ class image_converter:
             objPose.position.z = M["m00"];
             self.target_pub.publish(objPose)
 
-        # 显示Opencv格式的图像
+        # Displaying images in Opencv format
         # cv2.imshow("Image window", cv_image)
         # cv2.waitKey(3)
 
-        # 再将opencv格式额数据转换成ros image格式的数据发布
+        # Convert the opencv data to ros image format for publishing
         try:
             self.image_pub.publish(self.bridge.cv2_to_imgmsg(cv_image, "bgr8"))
         except CvBridgeError as e:
@@ -88,7 +98,7 @@ class image_converter:
 
 if __name__ == '__main__':
     try:
-        # 初始化ros节点
+        # Initialising the ros node
         rospy.init_node("object_detect")
         rospy.loginfo("Starting detect object")
         image_converter()

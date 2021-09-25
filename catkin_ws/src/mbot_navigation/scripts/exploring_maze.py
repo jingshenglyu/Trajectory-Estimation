@@ -19,39 +19,39 @@ class ExploringMaze():
         rospy.init_node('exploring_maze', anonymous=True)  
         rospy.on_shutdown(self.shutdown)  
 
-        # 在每个目标位置暂停的时间 (单位：s)
+        # Pause time at each target position (Unit: s)
         self.rest_time = rospy.get_param("~rest_time", 0.5)  
 
-        # 发布控制机器人的消息  
+        # Posting of control robots  
         self.cmd_vel_pub = rospy.Publisher('cmd_vel', Twist, queue_size=5) 
  
-        # 创建一个Subscriber，订阅/exploring_cmd
+        #  Create a Subscriber, subscribe to /exploring_cmd
         rospy.Subscriber("/exploring_cmd", Int8, self.cmdCallback)
 
-        # 订阅move_base服务器的消息  
+        # Subscribe to the move_base server  
         self.move_base = actionlib.SimpleActionClient("move_base", MoveBaseAction)  
 
         rospy.loginfo("Waiting for move_base action server...")  
         
-        # 60s等待时间限制  
+        # 60s waiting time limit   
         self.move_base.wait_for_server(rospy.Duration(60))  
         rospy.loginfo("Connected to move base server")  
  
-        # 保存运行时间的变量   
+        # Variables for saving runtime   
         start_time = rospy.Time.now()  
         running_time = 0  
 
         rospy.loginfo("Starting exploring maze")  
         
-        # 初始位置
+        # Set up the initial position
         start_location = Pose(Point(0, 0, 0), Quaternion(0.000, 0.000, 0.709016873598, 0.705191515089))  
  
         # 命令初值
         self.exploring_cmd = 0
        
-        # 开始主循环，随机导航  
+        # Start of main loop, random navigation  
         while not rospy.is_shutdown():
-			# 设定下一个随机目标点
+			# Set the next random target point
 			self.goal = MoveBaseGoal()
 			self.goal.target_pose.pose = start_location
 			self.goal.target_pose.header.frame_id = 'map'
@@ -67,16 +67,16 @@ class ExploringMaze():
 				self.goal.target_pose.pose.position.x = 0
 				self.goal.target_pose.pose.position.y = 0
 		
-			# 让用户知道下一个位置
+			# Let the user know the next location
 			rospy.loginfo("Going to:" + str(self.goal.target_pose.pose))
 
-			# 向下一个位置进发
+			# Moving on to the next position
 			self.move_base.send_goal(self.goal)
 			
-			# 五分钟时间限制
+			# Five-minute time limit
 			finished_within_time = self.move_base.wait_for_result(rospy.Duration(300))
 
-			# 查看是否成功到达
+			# Check if you have arrived successfully
 			if not finished_within_time:
 				self.move_base.cancel_goal()
 				rospy.loginfo("Timed out achieving goal")
@@ -86,11 +86,11 @@ class ExploringMaze():
 					rospy.loginfo("Goal succeeded!")
 				else:
 					rospy.loginfo("Goal failed!")
-			# 运行所用时间
+			# Time spent running
 			running_time = rospy.Time.now() - start_time
 			running_time = running_time.secs / 60.0
 
-			# 输出本次导航的所有信息
+			# Output all information for this navigation
 			rospy.loginfo("current time:" + str(trunc(running_time,1))+"min")
         self.shutdown()
 

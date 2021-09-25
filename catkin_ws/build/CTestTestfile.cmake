@@ -7,7 +7,6 @@
 subdirs("gtest")
 subdirs("mbot_navigation")
 subdirs("mbot_teleop")
-subdirs("robot_voice")
 subdirs("mbot_vision")
 subdirs("mbot_gazebo")
 subdirs("mbot_description")

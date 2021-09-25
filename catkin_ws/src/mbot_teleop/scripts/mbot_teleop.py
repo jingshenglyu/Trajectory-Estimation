@@ -79,22 +79,22 @@ if __name__=="__main__":
         print vels(speed,turn)
         while(1):
             key = getKey()
-            # 运动控制方向键（1：正方向，-1负方向）
+            # Motion control direction keys (1: positive direction, -1 negative direction)
             if key in moveBindings.keys():
                 x = moveBindings[key][0]
                 th = moveBindings[key][1]
                 count = 0
-            # 速度修改键
+            # Speed Modifier Key
             elif key in speedBindings.keys():
-                speed = speed * speedBindings[key][0]  # 线速度增加0.1倍
-                turn = turn * speedBindings[key][1]    # 角速度增加0.1倍
+                speed = speed * speedBindings[key][0]  # Increase in linear velocity by a factor of 0.1 
+                turn = turn * speedBindings[key][1]    # Increase in angular velocity by a factor of 0.1
                 count = 0
 
                 print vels(speed,turn)
                 if (status == 14):
                     print msg
                 status = (status + 1) % 15
-            # 停止键
+            # Stop key
             elif key == ' ' or key == 'k' :
                 x = 0
                 th = 0
@@ -108,11 +108,11 @@ if __name__=="__main__":
                 if (key == '\x03'):
                     break
 
-            # 目标速度=速度值*方向值
+            # Target speed = speed value * direction value
             target_speed = speed * x
             target_turn = turn * th
 
-            # 速度限位，防止速度增减过快
+            # Speed limit to prevent excessive speed increase or decrease
             if target_speed > control_speed:
                 control_speed = min( target_speed, control_speed + 0.02 )
             elif target_speed < control_speed:
@@ -127,7 +127,7 @@ if __name__=="__main__":
             else:
                 control_turn = target_turn
 
-            # 创建并发布twist消息
+            # Create and publish twist messages
             twist = Twist()
             twist.linear.x = control_speed; 
             twist.linear.y = 0; 

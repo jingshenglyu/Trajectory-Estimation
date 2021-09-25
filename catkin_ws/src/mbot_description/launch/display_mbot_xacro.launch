@@ -4,16 +4,16 @@
 
 	<param name="robot_description" command="$(arg model)" />
 
-    <!-- 设置GUI参数，显示关节控制插件 -->
+    <!-- Set GUI parameters to display joint control plug-ins -->
 	<param name="use_gui" value="$(arg gui)"/>
 
-    <!-- 运行joint_state_publisher节点，发布机器人的关节状态  -->
+    <!-- Run the joint_state_publisher node to publish the robot's joint state  -->
 	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
 
-	<!-- 运行robot_state_publisher节点，发布tf  -->
+	<!-- Run the robot_state_publisher node to publish tf  -->
 	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
-    <!-- 运行rviz可视化界面 -->
+    <!-- Running the rviz visualisation interface -->
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find mbot_description)/config/mbot.rviz" required="true" />
 
 </launch>

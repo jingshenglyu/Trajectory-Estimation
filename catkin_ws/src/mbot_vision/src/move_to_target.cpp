@@ -1,3 +1,15 @@
+
+
+/*
+ * @Author       : Jingsheng Lyu
+ * @Date         : 2021-05-29 14:50:43
+ * @LastEditors  : Jingsheng Lyu
+ * @LastEditTime : 2021-09-25 17:51:58
+ * @FilePath     : /undefined/home/jingsheng/catkin_ws/src/mbot_vision/src/move_to_target.cpp
+ * @Github       : https://github.com/jingshenglyu
+ * @Web          : https://jingshenglyu.github.io/
+ * @E-Mail       : jingshenglyu@gmail.com
+ */
 #include<math.h>
 
 #include <ros/ros.h>
@@ -18,15 +30,14 @@ ros::Publisher voice_pub;
 
 int status_flag = STATUS_EXPLORING;
 
-// 接收到订阅的消息后，会进入消息回调函数
+// When a subscribed message is received, the message callback function is entered
 void poseCallback(const geometry_msgs::Pose::ConstPtr& msg)
 {
-    // 将接收到的消息打印出来
+    // Print out the incoming message
     ROS_INFO("Target pose: x:%0.6f, y:%0.6f, z:%0.6f", msg->position.x, msg->position.y, msg->position.z);
 
 
-    /******************************请补充此处代码（开始）*******************************************/
-    
+    // Move function   
     if(status_flag==STATUS_EXPLORING)
     {
         status_flag=STATUS_CLOSE_TARGET;
@@ -61,26 +72,26 @@ void poseCallback(const geometry_msgs::Pose::ConstPtr& msg)
 
     }
 
-    /******************************请补充此处代码（结束）*******************************************/
+
 }
 
 int main(int argc, char **argv)
 {
-	// ROS节点初始化
+	// ROS node initialisation
 	ros::init(argc, argv, "move_to_target");
 
-	// 创建节点句柄
+	// Creating node handles
 	ros::NodeHandle n;
-    // 创建一个Subscriber，订阅名为/turtle1/pose的topic，注册回调函数poseCallback
+    // Create a Subscriber, subscribe to a topic named /turtle1/pose and register the callback function poseCallback
     ros::Subscriber pose_sub = n.subscribe("/object_detect_pose", 10, poseCallback);
-	// 创建一个Publisher，发布名为cmd_vel的topic，消息类型为geometry_msgs::Twist，队列长度10
+	// Create a Publisher that publishes a topic named cmd_vel with message type geometry_msgs::Twist and queue length 10
 	vel_pub = n.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
-	// 创建一个Publisher，发布名为cmd_vel的topic，消息类型为std_msgs::Int8，队列长度10
+	// Create a Publisher to publish a topic named cmd_vel with message type std_msgs::Int8 and queue length 10
 	cmd_pub = n.advertise<std_msgs::Int8>("/exploring_cmd", 10);
-    // 发布语音输出内容    
+    // Publish output content    
     voice_pub = n.advertise<std_msgs::String>("voiceWords", 1000); 
 
-    // 循环等待回调函数
+    // Loop to wait for callback functions
     ros::spin();
 
 	return 0;

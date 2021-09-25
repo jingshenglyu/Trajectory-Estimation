@@ -740,58 +740,6 @@ actionlib_msgs_generate_messages_py/fast:
 .PHONY : actionlib_msgs_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named voice_assistant
-
-# Build rule for target.
-voice_assistant: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 voice_assistant
-.PHONY : voice_assistant
-
-# fast build rule for target.
-voice_assistant/fast:
-	$(MAKE) -f robot_voice/CMakeFiles/voice_assistant.dir/build.make robot_voice/CMakeFiles/voice_assistant.dir/build
-.PHONY : voice_assistant/fast
-
-#=============================================================================
-# Target rules for targets named iat_publish
-
-# Build rule for target.
-iat_publish: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 iat_publish
-.PHONY : iat_publish
-
-# fast build rule for target.
-iat_publish/fast:
-	$(MAKE) -f robot_voice/CMakeFiles/iat_publish.dir/build.make robot_voice/CMakeFiles/iat_publish.dir/build
-.PHONY : iat_publish/fast
-
-#=============================================================================
-# Target rules for targets named voice_ctrl_bot
-
-# Build rule for target.
-voice_ctrl_bot: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 voice_ctrl_bot
-.PHONY : voice_ctrl_bot
-
-# fast build rule for target.
-voice_ctrl_bot/fast:
-	$(MAKE) -f robot_voice/CMakeFiles/voice_ctrl_bot.dir/build.make robot_voice/CMakeFiles/voice_ctrl_bot.dir/build
-.PHONY : voice_ctrl_bot/fast
-
-#=============================================================================
-# Target rules for targets named tts_subscribe
-
-# Build rule for target.
-tts_subscribe: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tts_subscribe
-.PHONY : tts_subscribe
-
-# fast build rule for target.
-tts_subscribe/fast:
-	$(MAKE) -f robot_voice/CMakeFiles/tts_subscribe.dir/build.make robot_voice/CMakeFiles/tts_subscribe.dir/build
-.PHONY : tts_subscribe/fast
-
-#=============================================================================
 # Target rules for targets named sensor_msgs_generate_messages_eus
 
 # Build rule for target.
@@ -1784,10 +1732,6 @@ help:
 	@echo "... actionlib_msgs_generate_messages_eus"
 	@echo "... actionlib_msgs_generate_messages_lisp"
 	@echo "... actionlib_msgs_generate_messages_py"
-	@echo "... voice_assistant"
-	@echo "... iat_publish"
-	@echo "... voice_ctrl_bot"
-	@echo "... tts_subscribe"
 	@echo "... sensor_msgs_generate_messages_eus"
 	@echo "... move_to_target"
 	@echo "... sensor_msgs_generate_messages_lisp"

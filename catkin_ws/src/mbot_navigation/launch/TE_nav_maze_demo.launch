@@ -1,0 +1,18 @@
+<launch>
+
+    <!-- Setting up the map's profile -->
+    <arg name="map" default="closeroom.yaml" />
+
+    <!-- Run the map server and load the set map-->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find mbot_navigation)/maps/$(arg map)"/>
+
+    <!-- Run the move_base node -->
+    <include file="$(find mbot_navigation)/launch/move_base.launch"/>
+
+    <!-- Start AMCL node -->
+    <include file="$(find mbot_navigation)/launch/amcl.launch" />
+
+    <!-- Run rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find mbot_navigation)/rviz/nav.rviz"/>
+
+</launch>

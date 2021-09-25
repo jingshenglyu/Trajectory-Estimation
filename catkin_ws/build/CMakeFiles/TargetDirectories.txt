@@ -84,17 +84,6 @@
 /home/jingsheng/catkin_ws/build/mbot_teleop/CMakeFiles/install/local.dir
 /home/jingsheng/catkin_ws/build/mbot_teleop/CMakeFiles/rebuild_cache.dir
 /home/jingsheng/catkin_ws/build/mbot_teleop/CMakeFiles/install.dir
-/home/jingsheng/catkin_ws/build/robot_voice/CMakeFiles/install/strip.dir
-/home/jingsheng/catkin_ws/build/robot_voice/CMakeFiles/install.dir
-/home/jingsheng/catkin_ws/build/robot_voice/CMakeFiles/list_install_components.dir
-/home/jingsheng/catkin_ws/build/robot_voice/CMakeFiles/voice_assistant.dir
-/home/jingsheng/catkin_ws/build/robot_voice/CMakeFiles/iat_publish.dir
-/home/jingsheng/catkin_ws/build/robot_voice/CMakeFiles/install/local.dir
-/home/jingsheng/catkin_ws/build/robot_voice/CMakeFiles/test.dir
-/home/jingsheng/catkin_ws/build/robot_voice/CMakeFiles/rebuild_cache.dir
-/home/jingsheng/catkin_ws/build/robot_voice/CMakeFiles/voice_ctrl_bot.dir
-/home/jingsheng/catkin_ws/build/robot_voice/CMakeFiles/tts_subscribe.dir
-/home/jingsheng/catkin_ws/build/robot_voice/CMakeFiles/edit_cache.dir
 /home/jingsheng/catkin_ws/build/mbot_vision/CMakeFiles/install/strip.dir
 /home/jingsheng/catkin_ws/build/mbot_vision/CMakeFiles/install.dir
 /home/jingsheng/catkin_ws/build/mbot_vision/CMakeFiles/list_install_components.dir
