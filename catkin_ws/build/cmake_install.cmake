@@ -134,6 +134,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/jingsheng/catkin_ws/build/mbot_navigation/cmake_install.cmake")
   include("/home/jingsheng/catkin_ws/build/mbot_teleop/cmake_install.cmake")
   include("/home/jingsheng/catkin_ws/build/mbot_vision/cmake_install.cmake")
+  include("/home/jingsheng/catkin_ws/build/robot_vision/cmake_install.cmake")
   include("/home/jingsheng/catkin_ws/build/mbot_gazebo/cmake_install.cmake")
   include("/home/jingsheng/catkin_ws/build/mbot_description/cmake_install.cmake")
 

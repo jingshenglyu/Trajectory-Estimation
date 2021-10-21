@@ -45,7 +45,7 @@ void poseCallback(const geometry_msgs::Pose::ConstPtr& msg)
         cmd.data=STATUS_CLOSE_TARGET;
         cmd_pub.publish(cmd);
         std_msgs::String msg;
-        msg.data="发现宝藏，向宝藏进发";
+        msg.data="Discover the target and move forward";
         voice_pub.publish(msg);
         
     }
@@ -57,7 +57,7 @@ void poseCallback(const geometry_msgs::Pose::ConstPtr& msg)
         cmd_pub.publish(cmd);
         
         std_msgs::String msg;
-        msg.data="拿到宝藏，撤退";
+        msg.data="Reaching the target";
         voice_pub.publish(msg);
     }
     else if(status_flag==STATUS_CLOSE_TARGET)

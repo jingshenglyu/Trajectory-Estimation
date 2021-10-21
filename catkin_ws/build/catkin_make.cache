@@ -1,2 +1,2 @@
-mbot_description:mbot_gazebo:mbot_navigation:mbot_teleop:mbot_vision
+mbot_description:mbot_gazebo:mbot_navigation:mbot_teleop:mbot_vision:robot_vision
 -DCATKIN_DEVEL_PREFIX=/home/jingsheng/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/jingsheng/catkin_ws/install -G Unix Makefiles

@@ -1,6 +1,6 @@
 <launch>
 
-    <!-- 设置launch文件的参数 -->
+    <!-- Set the parameters of the launch file -->
     <!--arg name="world_name" value="$(find mbot_gazebo)/worlds/maze.world"/-->
     <arg name="world_name" value="$(find mbot_gazebo)/worlds/closeroom.world"/>
     <arg name="paused" default="false"/>
