@@ -52,6 +52,11 @@ https://bitbucket.org/osrf/gazebo_models/downloads/
             ```
     3. If you also need other functions, please try to such the tools by yourself.
 
+    4. EKF 
+            ```
+            sudo apt-get install ros-melodic-robot-pose-ekf
+            ```
+
 
 ## Implementation for simulation 
 
@@ -100,3 +105,42 @@ roslaunch mbot_navigation exploring_slam_demo.launch
 
         CTRL-C to quit
 
+## Camera Calibration
+
+0. Preparation: Download the ROS stack for Camera Calibration
+```
+sudo apt-get install ros-melodic-camera-calibration
+```
+
+1. Run the camera
+```
+roslaunch robot_vision usb_cam.launch
+```
+
+2. Run the calibration program
+```
+rosrun camera_calibration cameracalibrator.py --ze 8x6 --square 0.024 image:=/usb_cam/image_raw camera:=/usb_cam
+```
+
+## Map Building
+
+0. Preparation: Download the ROS stack for Grid Mapping
+```
+sudo apt-get install ros-melodic-gmapping
+```
+
+1. Launch the simulation environment
+```
+roslaunch mbot_gazebo TE_maze_gazebo.launch 
+```
+
+2. Map Building with Gmapping
+```
+roslaunch mbot_navigation gmapping_demo.launch 
+```
+
+
+4. Run the remote control - User build the map
+```
+roslauch mbot_teleop mbot_teleop.launch
+```
